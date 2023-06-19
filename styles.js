@@ -21,27 +21,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "space-between",
   },
-  optionContainer: {
-    // Border
-    borderWidth: 2,
-    borderBottomWidth: 4,
-    borderColor: "lightgrey",
-    borderRadius: 10,
-
-    // Size
-    width: "48%",
-    height: "48%",
-
-    // spaceing
-    padding: 10,
-
-    alignItems: "center",
-  },
-  optionImage: {
-    width: "100%",
-    flex: 1,
-  },
-  optionText: {},
 });
 
 export default styles;
