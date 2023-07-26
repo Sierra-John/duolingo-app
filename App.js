@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, ScrollView, SafeAreaView } from "react-native";
 
 import styles from "./styles";
 
 import ImageOption from "./src/components/ImageOption/ImageOption";
+import Button from "./src/components/Button/Button";
 import question from "./assets/data/oneQuestionWithOption";
 
 function App() {
   const [selected, setSelected] = useState(null);
+
+  const onButtonPress = () => {
+    console.warn("Pressed");
+  };
 
   return (
     <View style={styles.root}>
@@ -23,6 +28,8 @@ function App() {
           />
         ))}
       </View>
+
+      <Button text="Check" onPress={onButtonPress} disabled={!selected} />
     </View>
   );
 }
