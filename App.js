@@ -1,24 +1,44 @@
-import React, { useState } from "react";
-import { Text, View, Image, ScrollView, SafeAreaView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, Image, Alert } from "react-native";
 
 import styles from "./styles";
 
 import ImageOption from "./src/components/ImageOption/ImageOption";
 import Button from "./src/components/Button/Button";
-import question from "./assets/data/oneQuestionWithOption";
+import questions from "./assets/data/imageMulatipleChoiceQuestions";
 
 function App() {
   const [selected, setSelected] = useState(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    questions[currentQuestionIndex]
+  );
+
+  useEffect(() => {
+    if (currentQuestionIndex >= questions.length) {
+      Alert.alert("You Won!");
+      // Move back to begining
+      setCurrentQuestionIndex(0);
+    } else {
+      setCurrentQuestion(questions[currentQuestionIndex]);
+    }
+  }, [currentQuestionIndex]);
 
   const onButtonPress = () => {
-    console.warn("Pressed");
+    if (selected.correct) {
+      // Move to the next question
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelected(null);
+    } else {
+      Alert.alert("Wrong!");
+    }
   };
 
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>{question.question}</Text>
+      <Text style={styles.title}>{currentQuestion.question}</Text>
       <View style={styles.optionsContainer}>
-        {question.options.map((option) => (
+        {currentQuestion.options.map((option) => (
           <ImageOption
             key={option.id}
             image={option.image}
