@@ -5,8 +5,11 @@ import styles from "./styles";
 
 import ImageOption from "./src/components/ImageOption/ImageOption";
 import Button from "./src/components/Button/Button";
-import questions from "./assets/data/imageMulatipleChoiceQuestions";
 import ImageMultipleChoiceQuestion from "./src/components/ImageMultipleChoiceQuestion/ImageMultipleChoiceQuestion";
+import OpenEndedQuestion from "./src/components/OpenEndedQuestion/OpenEndedQuestion";
+
+//import questions from "./assets/data/imageMulatipleChoiceQuestions";
+import questions from "./assets/data/openEndedQuestions";
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -34,7 +37,12 @@ function App() {
 
   return (
     <View style={styles.root}>
-      <ImageMultipleChoiceQuestion
+      {/*<ImageMultipleChoiceQuestion
+        question={currentQuestion}
+        onCorrect={onCorrect}
+        onWrong={onWrong}
+      />*/}
+      <OpenEndedQuestion
         question={currentQuestion}
         onCorrect={onCorrect}
         onWrong={onWrong}
