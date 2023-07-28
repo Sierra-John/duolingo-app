@@ -9,7 +9,8 @@ import ImageMultipleChoiceQuestion from "./src/components/ImageMultipleChoiceQue
 import OpenEndedQuestion from "./src/components/OpenEndedQuestion/OpenEndedQuestion";
 
 //import questions from "./assets/data/imageMulatipleChoiceQuestions";
-import questions from "./assets/data/openEndedQuestions";
+//import questions from "./assets/data/openEndedQuestions";
+import questions from "./assets/data/allQuestions";
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -37,16 +38,20 @@ function App() {
 
   return (
     <View style={styles.root}>
-      {/*<ImageMultipleChoiceQuestion
-        question={currentQuestion}
-        onCorrect={onCorrect}
-        onWrong={onWrong}
-      />*/}
-      <OpenEndedQuestion
-        question={currentQuestion}
-        onCorrect={onCorrect}
-        onWrong={onWrong}
-      />
+      {currentQuestion.type == "IMAGE_MULTIPLE_CHOICE" && (
+        <ImageMultipleChoiceQuestion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      )}
+      {currentQuestion.type == "OPEN_ENDED" ? (
+        <OpenEndedQuestion
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      ) : null}
     </View>
   );
 }
