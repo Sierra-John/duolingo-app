@@ -1,5 +1,12 @@
 export default [
   {
+    id: "q0",
+    type: "FILL_IN_THE_BLANK",
+    text: "una nina, una ",
+    options: ["yo", "la", "mujer", "el"],
+    correct: "mujer",
+  },
+  {
     id: "q1",
     type: "IMAGE_MULTIPLE_CHOICE",
     question: 'Which of these is "the glass"?',

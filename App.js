@@ -9,6 +9,7 @@ import OpenEndedQuestion from "./src/components/OpenEndedQuestion/OpenEndedQuest
 import Header from "./src/components/Header";
 
 import questions from "./assets/data/allQuestions";
+import FillInTheBlank from "./src/components/FillInTheBlank/FillInTheBlank";
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -94,6 +95,15 @@ function App() {
         progress={currentQuestionIndex / questions.length}
         lives={lives}
       />
+
+      {currentQuestion.type == "FILL_IN_THE_BLANK" && (
+        <FillInTheBlank
+          question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      )}
+
       {currentQuestion.type == "IMAGE_MULTIPLE_CHOICE" && (
         <ImageMultipleChoiceQuestion
           question={currentQuestion}
