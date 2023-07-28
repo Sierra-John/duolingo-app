@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Alert } from "react-native";
+import { View, Alert, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "./styles";
@@ -17,6 +17,7 @@ function App() {
   );
 
   const [lives, setLives] = useState(5);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
@@ -34,8 +35,10 @@ function App() {
 
   //
   useEffect(() => {
-    saveData();
-  }, [lives, currentQuestionIndex]);
+    if (hasLoaded) {
+      saveData();
+    }
+  }, [lives, currentQuestionIndex, hasLoaded]);
 
   const onCorrect = () => {
     setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -77,7 +80,13 @@ function App() {
     if (currentQuestionIndex) {
       setCurrentQuestionIndex(parseInt(currentQuestionIndex));
     }
+
+    setHasLoaded(true);
   };
+
+  if (!hasLoaded) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <View style={styles.root}>
