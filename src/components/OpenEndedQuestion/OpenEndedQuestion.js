@@ -40,7 +40,7 @@ const OpenEndedQuestion = ({ question, onCorrect, onWrong }) => {
         multiline={true}
       />
 
-      <Button text="Check" onPress={onButtonPress} disabled={false} />
+      <Button text="Check" onPress={onButtonPress} disabled={!input} />
     </>
   );
 };
